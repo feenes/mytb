@@ -31,17 +31,17 @@ def get_default_log_settings(**kwargs):
         "disable_existing_loggers": False,
         "formatters": {
             "verbose": {
-                "format": "%(levelname)s %(asctime)s %(process)d %(name)s/%(module)s %(message)s"
-            },
+                "format": "%(levelname)-8s %(asctime)s %(process)d %(name)-18s:%(lineno)d %(message)s"
             "simple": {
-                "format": "%(levelname)s %(module)s %(message)s"
+                "format": "%(levelname)-8s %(asctime)s %(name)-18s:%(lineno)d %(message)s", 
+                "datefmt" : "%H:%M:%S",
             },
         },
         "handlers": {
             "console": {
                 "level": "WARNING",
                 "class": "logging.StreamHandler",
-                "formatter": "verbose"
+                "formatter": "simple"
             }, 
             "file": {
                 "level" : "INFO",
@@ -139,7 +139,10 @@ def config_logger(cfg_name, name):
             "mytb.logging.config"
             ).format(cfg_name).split()
     for modname in modnames:
+<<<<<<< HEAD
         print(repr(modname))
+=======
+>>>>>>> github/master
         try:
             exists = module_exists(modname)
         except ImportError as exc:
@@ -169,7 +172,10 @@ def config_logger(cfg_name, name):
             else:
                 log_dict = None
             if log_dict:
+<<<<<<< HEAD
                 print("LD", log_dict)
+=======
+>>>>>>> github/master
                 try:
                     logging.config.dictConfig(log_dict)
                 except Exception as exc:
