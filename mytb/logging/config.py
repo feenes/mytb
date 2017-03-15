@@ -32,6 +32,7 @@ def get_default_log_settings(**kwargs):
         "formatters": {
             "verbose": {
                 "format": "%(levelname)-8s %(asctime)s %(process)d %(name)-18s:%(lineno)d %(message)s"
+            },
             "simple": {
                 "format": "%(levelname)-8s %(asctime)s %(name)-18s:%(lineno)d %(message)s", 
                 "datefmt" : "%H:%M:%S",
@@ -87,9 +88,13 @@ def split_config(log_config):
     """ splits log config int the config name and its arguments 
         This is not fully implemented. it will split on ' ' or on ':' depending what occurs first
     """
-    splitvals = re.split('(\s+|:)', log_config, 1)
+    splitvals = re.split('(?:\s+|:)', log_config, 1)
     if len(splitvals) == 2:
-        cfg_name, cfg_args = splitvals
+        cfg_name, cfg_argstr = splitvals
+        cfg_args = {}
+        for kv in cfg_argstr.split(','):
+            key, val = kv.split('=')
+            cfg_args[key] = val
     else:
         cfg_name = log_config
         cfg_args = {}
@@ -120,6 +125,7 @@ def config_logger(cfg_name, name):
     cfg_name, cfg_args = split_config(cfg_name)
     if not 'name'  in cfg_args:
         cfg_args['name'] = name
+    #print("N: %r / A: %r" % (cfg_name, cfg_args))
 
     # can I find a config file
     if os.path.isfile(cfg_name):
@@ -139,10 +145,7 @@ def config_logger(cfg_name, name):
             "mytb.logging.config"
             ).format(cfg_name).split()
     for modname in modnames:
-<<<<<<< HEAD
-        print(repr(modname))
-=======
->>>>>>> github/master
+        #print("MN", modname)
         try:
             exists = module_exists(modname)
         except ImportError as exc:
@@ -172,10 +175,6 @@ def config_logger(cfg_name, name):
             else:
                 log_dict = None
             if log_dict:
-<<<<<<< HEAD
-                print("LD", log_dict)
-=======
->>>>>>> github/master
                 try:
                     logging.config.dictConfig(log_dict)
                 except Exception as exc:
@@ -187,12 +186,11 @@ def config_logger(cfg_name, name):
                 setupfunc(**cfg_args)
                 return
 
+
 def mk_default_logger(cfg_name):
     cfg = json.loads(DEFAULT_DICT_CFG_STR % dict(cfg_name=cfg_name, logdir='.'))
     logging.config.dictConfig(cfg)
     
-
-
 
 def getLogger(name=None, force_config=False):
     """ gets a logger (like logging.getLogger()
@@ -210,5 +208,5 @@ def getLogger(name=None, force_config=False):
         log_cfg = getattr(options, LONG_LOG_SWITCH[2:].replace('-', '_'))
         #print("LOG_CFG: %r" % log_cfg)
         config_logger(log_cfg, name)
-        #print("SHALL CONFIG")
     return logging.getLogger(name)
+
