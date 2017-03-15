@@ -10,7 +10,7 @@ install_requires = [
 ]
 
 setup(name='mytb',
-      version='0.0.1',
+      version='0.0.2',
       description='my toolbox for everyday python projects',
       classifiers=[
       ],
@@ -20,6 +20,10 @@ setup(name='mytb',
       author_email='info@teledomic.eu',
       packages=[
             'mytb', 
+            'mytb.importlib', 
+            'mytb.logging', 
+            'mytb.logging.handlers', 
+            'mytb.tests', 
             ],
       scripts=[],
       entry_points={
