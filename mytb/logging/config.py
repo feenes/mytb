@@ -32,6 +32,7 @@ def get_default_log_settings(**kwargs):
         "formatters": {
             "verbose": {
                 "format": "%(levelname)-8s %(asctime)s %(process)d %(name)-18s:%(lineno)d %(message)s"
+            },
             "simple": {
                 "format": "%(levelname)-8s %(asctime)s %(name)-18s:%(lineno)d %(message)s", 
                 "datefmt" : "%H:%M:%S",
@@ -139,10 +140,6 @@ def config_logger(cfg_name, name):
             "mytb.logging.config"
             ).format(cfg_name).split()
     for modname in modnames:
-<<<<<<< HEAD
-        print(repr(modname))
-=======
->>>>>>> github/master
         try:
             exists = module_exists(modname)
         except ImportError as exc:
@@ -172,10 +169,6 @@ def config_logger(cfg_name, name):
             else:
                 log_dict = None
             if log_dict:
-<<<<<<< HEAD
-                print("LD", log_dict)
-=======
->>>>>>> github/master
                 try:
                     logging.config.dictConfig(log_dict)
                 except Exception as exc:

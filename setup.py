@@ -10,7 +10,7 @@ install_requires = [
 ]
 
 setup(name='mytb',
-      version='0.0.2',
+      version='0.0.3',
       description='my toolbox for everyday python projects',
       classifiers=[
       ],
