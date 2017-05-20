@@ -18,6 +18,7 @@ import inspect
 import json
 import pkgutil
 import importlib
+
 import __main__
 
 from mytb.pprint import pprint
@@ -71,7 +72,7 @@ def shall_configure_logging(name=None):
         return True
 
     # let's inspect the call stack
-    print("MAIN FILE", __main__.__file__)
+    #print("MAIN FILE", getattr(__main__, '__file__', '?'))
     stack = inspect.stack()
     #print(len(stack), "stack entries")
     assert len(stack) >= 3  # at least stack entries should be there
@@ -79,10 +80,16 @@ def shall_configure_logging(name=None):
     record = stack[2]
     #pprint(record, "\n\nrecord")
     frm, fname, lno, funcname = record[:4]
-    if fname == __main__.__file__:
-        print("CALLED BY MAIN")
+    #print("fname", fname)
+    if fname == getattr(__main__,'__file__', '?'):
+        #print("CALLED BY MAIN")
         return True
-
+    dirname, basename = os.path.split(fname)
+    #print("DN", dirname, " BN", basename)
+    if (os.path.basename(dirname) == 'commands' and
+            os.path.splitext(basename)[0] == '__init__'):
+        return False
+        #return True   
 
 def split_config(log_config):
     """ splits log config int the config name and its arguments 
