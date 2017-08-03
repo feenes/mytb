@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+!/usr/bin/env python
 from __future__ import absolute_import, print_function
 
 # #############################################################################
@@ -18,6 +18,7 @@ import inspect
 import json
 import pkgutil
 import importlib
+
 import __main__
 
 from mytb.pprint import pprint
@@ -71,7 +72,7 @@ def shall_configure_logging(name=None):
         return True
 
     # let's inspect the call stack
-    print("MAIN FILE", __main__.__file__)
+    #print("MAIN FILE", getattr(__main__, '__file__', '?'))
     stack = inspect.stack()
     #print(len(stack), "stack entries")
     assert len(stack) >= 3  # at least stack entries should be there
@@ -79,18 +80,28 @@ def shall_configure_logging(name=None):
     record = stack[2]
     #pprint(record, "\n\nrecord")
     frm, fname, lno, funcname = record[:4]
-    if fname == __main__.__file__:
-        print("CALLED BY MAIN")
+    #print("fname", fname)
+    if fname == getattr(__main__,'__file__', '?'):
+        #print("CALLED BY MAIN")
         return True
-
+    dirname, basename = os.path.split(fname)
+    #print("DN", dirname, " BN", basename)
+    if (os.path.basename(dirname) == 'commands' and
+            os.path.splitext(basename)[0] == '__init__'):
+        return False
+        #return True   
 
 def split_config(log_config):
     """ splits log config int the config name and its arguments 
         This is not fully implemented. it will split on ' ' or on ':' depending what occurs first
     """
-    splitvals = re.split('(\s+|:)', log_config, 1)
+    splitvals = re.split('(?:\s+|:)', log_config, 1)
     if len(splitvals) == 2:
-        cfg_name, cfg_args = splitvals
+        cfg_name, cfg_argstr = splitvals
+        cfg_args = {}
+        for kv in cfg_argstr.split(','):
+            key, val = kv.split('=')
+            cfg_args[key] = val
     else:
         cfg_name = log_config
         cfg_args = {}
@@ -121,6 +132,7 @@ def config_logger(cfg_name, name):
     cfg_name, cfg_args = split_config(cfg_name)
     if not 'name'  in cfg_args:
         cfg_args['name'] = name
+    #print("N: %r / A: %r" % (cfg_name, cfg_args))
 
     # can I find a config file
     if os.path.isfile(cfg_name):
@@ -140,6 +152,7 @@ def config_logger(cfg_name, name):
             "mytb.logging.config"
             ).format(cfg_name).split()
     for modname in modnames:
+        #print("MN", modname)
         try:
             exists = module_exists(modname)
         except ImportError as exc:
@@ -180,12 +193,11 @@ def config_logger(cfg_name, name):
                 setupfunc(**cfg_args)
                 return
 
+
 def mk_default_logger(cfg_name):
     cfg = json.loads(DEFAULT_DICT_CFG_STR % dict(cfg_name=cfg_name, logdir='.'))
     logging.config.dictConfig(cfg)
     
-
-
 
 def getLogger(name=None, force_config=False):
     """ gets a logger (like logging.getLogger()
@@ -203,5 +215,5 @@ def getLogger(name=None, force_config=False):
         log_cfg = getattr(options, LONG_LOG_SWITCH[2:].replace('-', '_'))
         #print("LOG_CFG: %r" % log_cfg)
         config_logger(log_cfg, name)
-        #print("SHALL CONFIG")
     return logging.getLogger(name)
+
