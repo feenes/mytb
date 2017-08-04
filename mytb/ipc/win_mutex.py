@@ -40,7 +40,7 @@ class IPCMutex(object):
         In the other contexts the first process will create the mutex.
     """
 
-   def __init__(self, name, will_own=1, lockdir=tempdir):
+    def __init__(self, name, will_own=1, lockdir=tempdir):
         self.name = name
         self.will_own = will_own
         if not will_own:
@@ -68,7 +68,7 @@ class IPCMutex(object):
             return False
         raise IPCMutexError("got got return code %08x" % rslt)
 
-   def release(self):
+    def release(self):
         """ releases a mutex. Raises exception if error """
         # TODO: could fetch enhanced error info with GetLastError()
         rslt = ReleaseMutex(self.handle)

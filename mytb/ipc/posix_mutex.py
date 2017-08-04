@@ -13,7 +13,7 @@ import fcntl
 from tempfile import tempdir
 
 class IPCMutex(object):
-   def __init__(self, name, will_own=None, lockdir=tempdir):
+    def __init__(self, name, will_own=None, lockdir=tempdir):
         self.name = name
         self.lockdir = lockdir
         self.lockfile = None
