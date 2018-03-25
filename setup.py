@@ -20,16 +20,6 @@ setup(name='mytb',
       long_description_content_type="text/x-rst",
       classifiers=[
             'Development Status :: 3 - Alpha',
-            #'Intendened Audience ::  Developers',
-            #'Topic :: Software Development :: Modules',
-            #'License :: OSI Approved :: MIT License',
-            
-            #'Programming Language :: Python :: 2',
-            #'Programming Language :: Python :: 2.7',
-
-            #'Programming Language :: Python :: 3',
-            #'Programming Language :: Python :: 3.5',
-            #'Programming Language :: Python :: 3.6',
       ],
       keywords='toolbox development',
       url='https://www.teledomic.eu',
