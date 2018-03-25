@@ -11,6 +11,7 @@
 from __future__ import absolute_import, print_function
 
 import os
+import sys
 
 _RELEASE = None # well os version just has to be determined once
 
