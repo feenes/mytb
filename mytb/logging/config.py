@@ -27,6 +27,8 @@ from mytb.importlib import module_exists
 def get_default_log_settings(**kwargs):
     logdir = kwargs.get('log_dir', '.')
     name = kwargs.get('name', 'mytb')
+    enable_file_handler = kwargs.get('logtofile')
+    handlers = [ "console" ]
     cfg = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -45,20 +47,22 @@ def get_default_log_settings(**kwargs):
                 "class": "logging.StreamHandler",
                 "formatter": "simple"
             }, 
-            "file": {
-                "level" : "INFO",
-                "class": "logging.FileHandler",
-                "filename" : "%s/%s.log" % (logdir, name),
-                "formatter" : "verbose"
-            }
         },
         "loggers": {
             "": {
                 "level": "INFO",
-                "handlers": [ "file", "console" ]
+                "handlers": handlers,
             },
         }
     }
+    if enable_file_handler:
+        handlers["file"] = {
+            "level" : "INFO",
+            "class": "logging.FileHandler",
+            "filename" : "%s/%s.log" % (logdir, name),
+            "formatter" : "verbose"
+        }
+        handlers = [ "file" ] + handlers
     #print(cfg['handlers']['file'])
     return cfg
 

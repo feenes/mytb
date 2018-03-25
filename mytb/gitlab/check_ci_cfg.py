@@ -50,6 +50,8 @@ tree = (
     ('stages', list),
     ('before_script', list),
     (rex(r".*"), (
+        ('allow_failure', bool),
+        ('image', str),
         ('stage', str),
         ('script', list),
         ('tags', list),
@@ -75,6 +77,11 @@ def check_cfg(cfg, tree, parent=''):
                             break
                         print("%s.%s must be string" % (parent, key))
                         return False
+                    elif subtree is bool:
+                        if type(value) is bool:
+                            break
+                        print("%s.%s must be bool" % (parent, key))
+                        return False
                     elif subtree is list:
                         if type(value) is list:
                             break
@@ -82,10 +89,10 @@ def check_cfg(cfg, tree, parent=''):
                         return False
                     elif treetype in (tuple,):
                         if parent:
-                            parent = parent + '.' + key
+                            sub_parent = parent + '.' + key
                         else:
-                            parent = key
-                        result = check_cfg(value, subtree, parent=parent)
+                            sub_parent = key
+                        result = check_cfg(value, subtree, parent=sub_parent)
                         if not result:
                             return result
                         break
