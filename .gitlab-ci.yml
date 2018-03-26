@@ -1,0 +1,14 @@
+.cache: &cache
+  cache:
+    key: "$CI_BUILD_REF_NAME"
+    paths:
+      - .tox
+
+tox:
+  <<: *cache
+  tags:
+    - shell
+  stage: test
+  allow_failure: true
+  script:
+    - tox
