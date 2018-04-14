@@ -6,7 +6,7 @@
 #
 """
     validates a gitlab-ci config file rather superficially,
-    but still better than no syntax check at all. might be implemented as a 
+    but still better than no syntax check at all. might be implemented as a
     pre-commit trigger
 """
 #
@@ -22,42 +22,48 @@ import sys
 import yaml
 
 
+rex = re.compile  # compile a regex
+
+
 def print_nothing(*args, **kwargs):
     pass
 
+
 trace = print_nothing  # for tracing in verbose mode
+
 
 class Entry(object):
     def init(self, name_rex, *args, **kwargs):
-        self.name = name
+        self.name = name_rex
 
-rex = re.compile # compile a regex
 
 def match(key, pattern):
     if hasattr(pattern, 'match'):
         return pattern.match(key)
     else:
         return key == pattern
-        
+
 
 # attemp of describing a very superficial syntax tree
 tree = (
-    ('cache', (
-        ("key",  True),
-        ("paths", list),
-        ),
+    (
+        'cache', (
+            ("key",  True),
+            ("paths", list),
+            ),
         ),
     ('stages', list),
     ('before_script', list),
-    (rex(r".*"), (
-        ('allow_failure', bool),
-        ('image', str),
-        ('stage', str),
-        ('script', list),
-        ('tags', list),
-        )),
+    (
+        rex(r".*"), (
+            ('allow_failure', bool),
+            ('image', str),
+            ('stage', str),
+            ('script', list),
+            ('tags', list),
+            )),
 )
-    
+
 
 def check_cfg(cfg, tree, parent=''):
     """ reursiveley check a cfg struct against a simple syntax tree """
@@ -99,19 +105,19 @@ def check_cfg(cfg, tree, parent=''):
                     else:
                         print("NOT IMPLEMENTED: %s.%s" % (parent, key))
                         return False
-            else: 
-                print("key %s.%s doesn't match" % (parent,key))
+            else:
+                print("key %s.%s doesn't match" % (parent, key))
                 return False
             trace("found")
     return True
-    
+
 
 def check_cfg_file(fname=None, text=None):
     """ checks whether a gitlabci config file seems to be correct
         The checks are not very extensive, but capture some common
         cases.
     """
-    if ( sum( (1 if val else 0) for val in (fname, text is not None)) 
+    if (sum((1 if val else 0) for val in (fname, text is not None))
             != 1):
         raise Exception("must pass either fname or text")
 
@@ -125,23 +131,30 @@ def check_cfg_file(fname=None, text=None):
         print("yaml syntax error")
         print(exc)
         return False
-            
+
     print("yaml syntax is correct")
     rslt = check_cfg(cfg, tree)
     print("Tree check = ", rslt)
     return rslt
 
+
 def mk_parser():
-    parser = argparse.ArgumentParser(description="checks syntax of gitlab ci config file")
-    parser.add_argument("--verbose", "-v", action="store_true", 
-        help="verbose display")
-    parser.add_argument("fname", nargs="?", default='.gitlab-ci.yml',
-        help="filename to check (default=%(default)s")
+    parser = argparse.ArgumentParser(
+        description="checks syntax of gitlab ci config file")
+    parser.add_argument(
+        "--verbose", "-v", action="store_true",
+        help="verbose display",
+        )
+    parser.add_argument(
+        "fname", nargs="?", default='.gitlab-ci.yml',
+        help="filename to check (default=%(default)s",
+        )
     return parser
+
 
 def main():
     global trace
-    args = sys.argv[1:] 
+    args = sys.argv[1:]
     parser = mk_parser()
     options = parser.parse_args(args)
     if options.verbose:

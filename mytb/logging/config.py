@@ -153,6 +153,7 @@ def config_logger(cfg_name, name):
     modnames = ( # module names to search
             "{0} log_settings.{0} log_settings.{0}_default "
             "log_settings.default log_settings.default_default "
+            "mytb.logging.configs.{0} "
             "mytb.logging.config"
             ).format(cfg_name).split()
     for modname in modnames:
@@ -209,7 +210,8 @@ def getLogger(name=None, force_config=False):
         setup logging according to some rules
         as described in config_logger()
     """
-    #print("GETL", name)
+    #print("GETL %s FC=%s SCL %s" %
+    #    (name, force_config, shall_configure_logging(name)))
     if force_config or shall_configure_logging(name):
         from mytb.argparse import mk_parser, LONG_LOG_SWITCH
         args = sys.argv[1:]
