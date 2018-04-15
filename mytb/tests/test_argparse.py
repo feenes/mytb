@@ -10,8 +10,6 @@ from __future__ import absolute_import, print_function
 #
 # #############################################################################
 
-import os
-import sys
 import unittest
 
 
@@ -21,20 +19,22 @@ class ArgParseTestCase(unittest.TestCase):
         import mytb.argparse
         parser = mytb.argparse.mk_parser()
 
-        # find all expected keys in parser
+        #  find all expected keys in parser
         options = parser.parse_args([])
-        self.assertEqual(set(vars(options).keys()), set(['app_name', 'log_config']))
+        self.assertEqual(
+            set(vars(options).keys()),
+            set(['app_name', 'log_config']))
         self.assertEqual(options.log_config, None)
 
-        # -L switch works
+        #  -L switch works
         options = parser.parse_args(['-L', 'tido'])
         self.assertEqual(options.log_config, 'tido')
 
-        # --log-config switch works
+        #  --log-config switch works
         options = parser.parse_args(['--log-config', 'todo'])
         self.assertEqual(options.log_config, 'todo')
-    
-        # can override long switch 
+
+        #  can override long switch
         mytb.argparse.LONG_LOG_SWITCH = '--lock-cfg'
         parser = mytb.argparse.mk_parser()
         options = parser.parse_args(['--lock-cfg', 'tata'])

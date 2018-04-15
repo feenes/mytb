@@ -12,6 +12,7 @@ import os
 import fcntl
 from tempfile import tempdir
 
+
 class IPCMutex(object):
     def __init__(self, name, will_own=None, lockdir=tempdir):
         self.name = name
@@ -20,7 +21,7 @@ class IPCMutex(object):
 
     def acquire(self):
         """ acquires a mutex """
-        lockfile_name = os.path.join(self.lockdir,self.name)
+        lockfile_name = os.path.join(self.lockdir, self.name)
         cur_umask = os.umask(0)
         lockfile = open(lockfile_name, 'w')
         os.umask(cur_umask)
@@ -31,9 +32,6 @@ class IPCMutex(object):
         except IOError:
             return False
 
-    
     # will be automatically release if process ends
     def release(self):
         raise NotImplementedError("cannot release this mutex at the moment")
-
-        

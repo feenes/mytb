@@ -20,27 +20,28 @@ if os.name == 'win32':
 
 
 #                      76543210
-TIMEOUT_INFINITE   = 0xffffffff
-MTX_WAIT_ABANDONED = 0x00000080
-MTX_WAIT_OBJECT_O  = 0x00000000
-MTX_WAIT_TIMEOUT   = 0x00000102
-MTX_WAIT_FAILED    = 0xffffffff
+TIMEOUT_INFINITE   = 0xffffffff  # noqa: E221
+MTX_WAIT_ABANDONED = 0x00000080  # noqa: E221
+MTX_WAIT_OBJECT_O  = 0x00000000  # noqa: E221
+MTX_WAIT_TIMEOUT   = 0x00000102  # noqa: E221
+MTX_WAIT_FAILED    = 0xffffffff  # noqa: E221
 
 
 class IPCMutexError(Exception):
     """ Errors Specific to this module """
 
+
 class IPCMutex(object):
-    """ Basic wrapper around windows Named mutex object 
+    """ Basic wrapper around windows Named mutex object
         due to legacy reasons there's still the initial acquire mode,
-        which is intended for ensuring, that a certain executable is 
+        which is intended for ensuring, that a certain executable is
         called only once. (will_own=1)
         In this case the calling process insists to own the mutex and
         fails otherwise.
         In the other contexts the first process will create the mutex.
     """
 
-    def __init__(self, name, will_own=1, lockdir=tempdir):
+    def __init__(self, name, will_own=1, lockdir=None):
         self.name = name
         self.will_own = will_own
         if not will_own:
@@ -49,9 +50,9 @@ class IPCMutex(object):
             self.handle = None
 
     def acquire(self, timeout=TIMEOUT_INFINITE):
-        """ gets mutex 
+        """ gets mutex
             due to legacy reasons there's still the initial acquire mode,
-            which is intended for ensuring, that a certain executable is 
+            which is intended for ensuring, that a certain executable is
             called only once. (will_own=1)
         """
         if self.will_own:
@@ -74,5 +75,3 @@ class IPCMutex(object):
         rslt = ReleaseMutex(self.handle)
         if rslt == 0:
             raise IPCMutexError("could not release Mutex.")
-
-                                                                                   

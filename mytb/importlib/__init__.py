@@ -11,7 +11,6 @@ from __future__ import absolute_import, print_function
 # #############################################################################
 
 
-
 def module_exists(modulename):
     """ tries to find out whether a module exists """
     import pkgutil
@@ -22,6 +21,7 @@ def module_exists(modulename):
         if pkgutil.find_loader(mod) is None:
             return False
     return True
+
 
 def import_obj(obj_str):
     """ handles input string as module.object
@@ -35,7 +35,3 @@ def import_obj(obj_str):
     mod = importlib.import_module(modname)
     func = getattr(mod, objname)
     return func
-
-
-    
-

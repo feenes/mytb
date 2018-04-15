@@ -40,7 +40,7 @@ class GitlabCfg(unittest.TestCase):
         self.tmpfiles.append(fname)
         with open(fname, "w") as fout:
             fout.write(yaml.dump(dict(before_script="ls")))
-        
+
     @data(*pass_patterns)
     def test_pattern_passes(self, pattern):
         """ gitlab-ci-cfg is correct """
@@ -51,32 +51,32 @@ class GitlabCfg(unittest.TestCase):
         """ gitlab-ci-cfg has errors """
         self.assertFalse(check_cfg_file(text=pattern.value))
 
-#    def test_get_rls_mutex(self):
-#        """ can acquire and release a mutex """
-#        mutex = Mutex("toto")
-#        status = mutex.status
-#        print("MST", status)
-#        self.assertFalse(mutex.status)
-#        mutex.acquire(timeout=1)
-#        self.assertTrue(mutex.status)
-#        mutex.release()
-#        self.assertFalse(mutex.status)
-#    def test_ctx_get_rls_mutex(self):
-#        """ can acquire and release with context manager """
-#        with Mutex("toto", 1) as mutex:
-#            pass
-#            #self.assertTrue(mutex.status)
-#        #self.assertFalse(mutex.status)
-#        # can acquire mutex without timeout
-#        mutex = Mutex("toto", 1)
+#     def test_get_rls_mutex(self):
+#         """ can acquire and release a mutex """
+#         mutex = Mutex("toto")
+#         status = mutex.status
+#         print("MST", status)
+#         self.assertFalse(mutex.status)
+#         mutex.acquire(timeout=1)
+#         self.assertTrue(mutex.status)
+#         mutex.release()
+#         self.assertFalse(mutex.status)
+#     def test_ctx_get_rls_mutex(self):
+#         """ can acquire and release with context manager """
+#         with Mutex("toto", 1) as mutex:
+#             pass
+#             #self.assertTrue(mutex.status)
+#         #self.assertFalse(mutex.status)
+#         # can acquire mutex without timeout
+#         mutex = Mutex("toto", 1)
 #
 #
-#if __name__ == "__main__":
-#    import sys
-#    args = sys.argv[1:]
-#    if args and args[0] == "test":
-#        print("TST")
-#        suite = unittest.TestSuite()
-#        suite.addTest(IPCTestCase("test_get_rls_mutex"))
-#        runner = unittest.TextTestRunner(verbosity=2, stream=sys.stdout)
-#        runner.run(suite)
+# if __name__ == "__main__":
+#     import sys
+#     args = sys.argv[1:]
+#     if args and args[0] == "test":
+#         print("TST")
+#         suite = unittest.TestSuite()
+#         suite.addTest(IPCTestCase("test_get_rls_mutex"))
+#         runner = unittest.TextTestRunner(verbosity=2, stream=sys.stdout)
+#         runner.run(suite)

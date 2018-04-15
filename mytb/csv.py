@@ -11,7 +11,9 @@ from builtins import next
 from builtins import object
 from builtins import open
 
+
 IS_PY2 = sys.version_info.major <= 2
+
 
 class CSVReader(object):
     def __init__(self, fname, encoding='utf8'):
@@ -37,19 +39,13 @@ class CSVReader(object):
         encoding = self.encoding
         if IS_PY2:
             for row in self.rdr:
-                row = [ field.decode(encoding) if type(field) == bytes else field 
-                    for field in row ]
+                row = [field.decode(encoding)
+                       if type(field) == bytes else field
+                       for field in row]
                 yield row
         else:
             for row in self.rdr:
                 yield row
 
-
     def __next__(self):
         return next(self.itr)
-
-
-
-
-
-

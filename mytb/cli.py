@@ -8,17 +8,16 @@ from __future__ import print_function
 import threading
 import logging
 
-import readline
-
 from builtins import input
 
+
 logger = logging.getLogger(__name__)
+
 
 class CLI(object):
     input_func = input
 
     def __init__(self, options=None, namespace=None, quit_func=None):
-        cls = self.__class__
         self._cli_thread = None
         self._options = options
         if namespace is None:
@@ -31,7 +30,6 @@ class CLI(object):
 
     def set_quit_function(self, func):
         self._quit_function = func
-
 
     def run(self):
         """ allows to run an ipython shell with the CLI's context vars """
@@ -69,8 +67,8 @@ class CLI(object):
             if shall_quit:
                 break
             try:
-                eval(compile(cmd_line, '<string>', 'single'), namespace) # pylint: disable=W0122,C0301
-            except Exception as exc: # pylint: disable=W0703
+                eval(compile(cmd_line, '<string>', 'single'), namespace)
+            except Exception as exc:
                 logger.error('ERROR: %r' % exc)
 
         print("END OF CLI")
@@ -81,15 +79,19 @@ class CLI(object):
 
     def run_as_thread(self, name='cli', daemon=True):
         """ start cli as a thread
-            This is needed for Qt Apps, where the GUI must be called in the main thread
+            This is needed for Qt Apps, where the GUI must be called
+            in the main thread
         """
-        self._cli_thread = cli_thread = threading.Thread(target=self.run,
+        self._cli_thread = cli_thread = threading.Thread(
+            target=self.run,
             name=name)
         cli_thread.daemon = daemon
         cli_thread.start()
 
+
 def main():
     pass
+
 
 if __name__ == '__main__':
     main()
