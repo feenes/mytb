@@ -24,7 +24,7 @@ flake2:
   script:
     - virtualenv -p $(pyenv which python2.7) venv2
     - source venv2/bin/activate ; python -m pip install -r requirements/all_py2.txt flake8
-    - source venv2/bin/activate ; python -m flake8
+    - source venv2/bin/activate ; python -m flake8 mytb
     
 flake3:
   tags:
@@ -34,5 +34,5 @@ flake3:
   script:
     - virtualenv -p $(pyenv which python3.5) venv3
     - source venv3/bin/activate ; python -m pip install -r requirements/all.txt flake8
-    - source venv3/bin/activate ; python -m flake8
+    - source venv3/bin/activate ; python -m flake8 mytb
     
