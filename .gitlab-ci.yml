@@ -5,7 +5,8 @@
       - .tox
 
 before_script:
-    - "[ -s $HOME/.prep_gitlab_runner.sh ] && . $HOME/.prep_gitlab_runner.sh"
+    - echo "HOME is $HOME"
+    - "[ -f $HOME/.prep_gitlab_runner.sh ] && . $HOME/.prep_gitlab_runner.sh"
 tox:
   <<: *cache
   tags:
