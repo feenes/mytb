@@ -1,0 +1,3 @@
+-r base_py3.txt
+ipython
+ddt

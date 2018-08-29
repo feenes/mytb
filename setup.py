@@ -6,6 +6,7 @@ from __future__ import absolute_import, print_function
 from setuptools import setup
 
 install_requires = [
+    'future',
     'begins',
     'dateutils',
     'minibelt',
