@@ -16,7 +16,7 @@ install_requires = [
 ]
 
 setup(name='mytb',
-      version='0.0.5',
+      version='0.0.6',
       description='my toolbox for everyday python projects',
       long_description="small modules and tools useful for many projects",
       long_description_content_type="text/x-rst",
@@ -32,8 +32,9 @@ setup(name='mytb',
             'mytb',
             'mytb.commands',
             'mytb.importlib',
-            'mytb.logging',
             'mytb.gitlab',
+            'mytb.html',
+            'mytb.logging',
             'mytb.logging.handlers',
 
             # might uncomment if you want that the dist package implements
