@@ -6,7 +6,7 @@
 
 before_script:
     - echo "HOME is $HOME"
-    - "[ -f $HOME/.prep_gitlab_runner.sh ] && . $HOME/.prep_gitlab_runner.sh"
+    - "[ -f $HOME/.gitlab_runner.sh ] && . $HOME/.gitlab_runner.sh"
 
 stages:
     - lint
@@ -16,7 +16,7 @@ flake2:
   tags:
     - shell
   stage: lint
-  allow_failure: true
+  allow_failure: false
   script:
     - virtualenv -p $(pyenv which python2.7) venv2
     - source venv2/bin/activate
@@ -28,7 +28,7 @@ flake3:
   tags:
     - shell
   stage: lint
-  allow_failure: true
+  allow_failure: false
   script:
     - virtualenv -p $(pyenv which python3.5) venv3
     - source venv3/bin/activate
