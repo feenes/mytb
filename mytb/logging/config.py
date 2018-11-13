@@ -105,7 +105,7 @@ def split_config(log_config):
         This is not fully implemented. it will split on ' ' or
             on ':' depending what occurs first
     """
-    splitvals = re.split('(?:\s+|:)', log_config, 1)
+    splitvals = re.split(r'(?:\s+|:)', log_config, 1)
     if len(splitvals) == 2:
         cfg_name, cfg_argstr = splitvals
         cfg_args = {}
@@ -169,7 +169,7 @@ def config_logger(cfg_name, name):
         # print("MN", modname)
         try:
             exists = module_exists(modname)
-        except ImportError as exc:
+        except ImportError:
             exists = False
         if exists:
             # print(modname, "exists")
@@ -190,7 +190,7 @@ def config_logger(cfg_name, name):
                 # print("CFGARGS", cfg_args)
                 try:
                     log_dict = getcfg(**cfg_args)
-                except Exception as exc:
+                except Exception:
                     print("Error when retrieving log configuration from ",
                           modname)
                     raise
@@ -199,7 +199,7 @@ def config_logger(cfg_name, name):
             if log_dict:
                 try:
                     logging.config.dictConfig(log_dict)
-                except Exception as exc:
+                except Exception:
                     print("Error when applying log configuration from ",
                           modname)
                     raise
