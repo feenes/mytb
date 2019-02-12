@@ -16,7 +16,7 @@ install_requires = [
 ]
 
 setup(name='mytb',
-      version='0.0.7',
+      version='0.0.8',
       description='my toolbox for everyday python projects',
       long_description="small modules and tools useful for many projects",
       long_description_content_type="text/x-rst",
