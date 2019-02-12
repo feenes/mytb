@@ -75,8 +75,8 @@ def test_datetime_parse():
 
 
 def test_range():
-        now = DateTime.strptime('now')
-        t_from, t_to = DateTime.parse_range()
-        one_day = timedelta(1)
-        assert check_diff(t_from, now - one_day)
-        assert check_diff(t_to, now)
+    now = DateTime.strptime('now')
+    t_from, t_to = DateTime.parse_range()
+    one_day = timedelta(1)
+    assert check_diff(t_from, now - one_day)
+    assert check_diff(t_to, now)
