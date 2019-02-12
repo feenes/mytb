@@ -1,1 +1,2 @@
 -r base.txt
+more-itertools<6.0
