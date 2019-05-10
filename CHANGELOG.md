@@ -1,6 +1,8 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
 ## [0.0.9](https://github.com/feenes/mytb/compare/0.0.8...0.0.9)
+* add changelog
+* enhance cli
 ## [0.0.8](https://github.com/feenes/mytb/compare/0.0.7...0.0.8)
 * re-add accidentally deleted html table_reader
 * module memory (for memory consumption analysis)
