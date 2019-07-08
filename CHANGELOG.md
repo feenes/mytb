@@ -1,5 +1,8 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
+## [0.0.10](https://github.com/feenes/mytb/compare/0.0.9...0.0.10)
+* add helper for creating pdb hooks
+* attempt to improve urls, that show up on https://pypi.org
 ## [0.0.9](https://github.com/feenes/mytb/compare/0.0.8...0.0.9)
 * add changelog
 * enhance cli
