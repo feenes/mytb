@@ -2,4 +2,5 @@ minibelt
 future
 dateutils
 pytz
+pyyaml
 tzlocal
