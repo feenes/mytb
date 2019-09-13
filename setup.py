@@ -6,12 +6,7 @@ from setuptools import setup
 
 install_requires = [
     "future",
-    "begins",
-    "dateutils",
     "minibelt",
-    "pyyaml",
-    "pytz",
-    "tzlocal",
 ]
 
 setup(name="mytb",
@@ -48,7 +43,7 @@ setup(name="mytb",
             ]
       },
       project_urls={
-        "Homepage": "https://www.teledomic.eu",
+        "Homepage": "https://github.com/feenes",
         "Documentation": "https://github.com/feenes/mytb",
         "Source": "https://github.com/feenes/mytb",
         "SayThanks": "https://github.com/feenes",
@@ -56,6 +51,23 @@ setup(name="mytb",
         "Tracker": "https://github.com/feenes/mytb/issues",
       },
       install_requires=install_requires,
+      extras_require=dict(
+        minimal=[],
+        all=[
+            "dateutils",
+            "pytz",
+            "tzlocal",
+            "pyyaml",
+            ],
+        date=[
+            "dateutils",
+            "pytz",
+            "tzlocal",
+            ],
+        gitlab=[
+            "pyyaml",
+            ],
+        ),
       setup_requires=["pytest-runner"],
       tests_require=["pytest"],
       zip_safe=False,
