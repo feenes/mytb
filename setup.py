@@ -33,6 +33,7 @@ setup(name="mytb",
             "mytb.gitlab",
             "mytb.html",
             "mytb.logging",
+            "mytb.logging.configs",
             "mytb.logging.handlers",
 
             # might comment if you want that the dist package implements
