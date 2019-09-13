@@ -1,3 +1,4 @@
 -r base_py2.txt
+-r test_py2.txt
 ipython
 ddt
