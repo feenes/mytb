@@ -1,6 +1,11 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
-## [0.0.10](https://github.com/feenes/mytb/compare/0.0.9...0.0.10)
+## [v0.0.11](https://github.com/feenes/mytb/compare/v0.0.10...v0.0.11)
+* fix limit pytest version for py2
+* add mytb.ipython to instantiate an interactive shell from an executable
+* add a basic console log config (w timestamp name and pids)
+* setup has now extra requirement for more granular installs
+## [v0.0.10](https://github.com/feenes/mytb/compare/0.0.9...v0.0.10)
 * add helper for creating pdb hooks
 * attempt to improve urls, that show up on https://pypi.org
 ## [0.0.9](https://github.com/feenes/mytb/compare/0.0.8...0.0.9)

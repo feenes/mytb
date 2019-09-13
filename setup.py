@@ -10,7 +10,7 @@ install_requires = [
 ]
 
 setup(name="mytb",
-      version="0.0.10",
+      version="0.0.11",
       author="Teledomic",
       author_email="info@teledomic.eu",
       description="my toolbox for everyday python projects",
