@@ -4,7 +4,8 @@ def get_log_settings(basedir='', basename='log', level='DEBUG', **kwargs):
         'disable_existing_loggers': False,
         'formatters': {
             'verbose': {
-                'format': '%(levelname)-8s %(asctime)s %(name)s:%(lineno)d %(message)s'
+                'format': '%(levelname)-8s %(asctime)s %(name)s:%(lineno)d '
+                          '%(message)s'
             },
             'simple': {
                 'format': '%(levelname)s %(module)s %(message)s'
@@ -12,8 +13,8 @@ def get_log_settings(basedir='', basename='log', level='DEBUG', **kwargs):
         },
         'handlers': {
             'console': {
-                'level':level,
-                'class':'logging.StreamHandler',
+                'level': level,
+                'class': 'logging.StreamHandler',
                 'formatter': 'verbose'
             },
         },
@@ -22,7 +23,7 @@ def get_log_settings(basedir='', basename='log', level='DEBUG', **kwargs):
             '': {
                 'level': 'DEBUG',
                 'handlers': ['console'],
-                'propagate': True,
+                'propagate': False,
             },
         }
     }
