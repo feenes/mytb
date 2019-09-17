@@ -1,5 +1,7 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
+## [v0.0.12](https://github.com/feenes/mytb/compare/v0.0.11...v0.0.12)
+* limit version of minibelt for py2.
 ## [v0.0.11](https://github.com/feenes/mytb/compare/v0.0.10...v0.0.11)
 * fix limit pytest version for py2
 * add mytb.ipython to instantiate an interactive shell from an executable

@@ -1,4 +1,3 @@
-minibelt
 future
 dateutils
 pytz
