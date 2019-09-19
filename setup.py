@@ -5,7 +5,7 @@ from __future__ import absolute_import, print_function
 from setuptools import find_packages
 from setuptools import setup
 
-long_description="""small modules and tools useful for many projects
+long_description = """small modules and tools useful for many projects
 """
 
 setup(name="mytb",
