@@ -15,6 +15,8 @@ import os
 import sys
 import argparse
 
+from mytb.string import str2bool
+
 LONG_LOG_SWITCH = "--log-config"
 SHORT_LOG_SWITCH = "-L"
 LOG_CONF_ENV_VAR = "MYTB_LOG_CONFIG"
@@ -48,3 +50,16 @@ def mk_parser(description="", app_name=None, add_help=True):
     parser.set_defaults(app_name=app_name)
 
     return parser
+
+
+def add_bool_argument(parser, *args, **kwargs):
+    """
+    adds a parser for parsing params as true or false
+    """
+    mykwargs = dict(
+        type=str2bool,
+        const=True,
+        nargs="?"
+        )
+    mykwargs.update(kwargs)
+    parser.add_argument(*args, **mykwargs)
