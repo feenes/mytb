@@ -10,6 +10,7 @@ from __future__ import absolute_import, print_function
 #
 # #############################################################################
 
+import argparse
 import unittest
 
 
@@ -40,3 +41,35 @@ class ArgParseTestCase(unittest.TestCase):
         options = parser.parse_args(['--lock-cfg', 'tata'])
         self.assertEqual(options.lock_cfg, 'tata')
         print(options)
+
+
+def test_add_bool_arg():
+    from mytb.argparse import add_bool_argument
+    parser = argparse.ArgumentParser()
+    add_bool_argument(parser, "-s")
+    add_bool_argument(parser, "--long")
+    add_bool_argument(parser, "-b", "--boolflag")
+    add_bool_argument(
+        parser, "-d", "--dataflag",
+        help="this is a help text",
+        )
+
+    #
+    args = ["-s", "--long", "0"]
+    options = parser.parse_args(args)
+    print("options", options)
+    assert options.s is True
+    assert options.long is False
+    assert options.boolflag is None
+
+    for val in ["1", "true", "yes"]:
+        print("options", options)
+        args = ["-s", "--long", "0", "-b", val]
+        options = parser.parse_args(args)
+        assert options.boolflag is True
+
+    for val in ["0", "f", "no"]:
+        print("options", val, options)
+        args = ["-s", "--long", "0", "-b", val]
+        options = parser.parse_args(args)
+        assert options.boolflag is False
