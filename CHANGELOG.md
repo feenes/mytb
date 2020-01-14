@@ -1,5 +1,7 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
+## [v0.0.14](https://github.com/feenes/mytb/compare/v0.0.13...v0.0.14)
+* robust makedirs() without race conditions
 ## [v0.0.13](https://github.com/feenes/mytb/compare/v0.0.12...v0.0.13)
 * new mytb.aio.compat for bw compatibility layer for asyncio
 ## [v0.0.12](https://github.com/feenes/mytb/compare/v0.0.11...v0.0.12)
