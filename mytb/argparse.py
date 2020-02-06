@@ -24,7 +24,8 @@ LOG_CONF_ENV_VAR = "MYTB_LOG_CONFIG"
 
 def mk_parser(description="", app_name=None, add_help=True):
     """ creates a parser with some default switches """
-    log_config = os.environ.get(LOG_CONF_ENV_VAR)
+    log_config = os.environ.get(
+            LOG_CONF_ENV_VAR, "mytb.logging.configs.console:level=WARNING")
     # print("LOG_CONFIG = %r" % log_config)
 
     parser = argparse.ArgumentParser(
