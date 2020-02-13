@@ -21,7 +21,7 @@ def get_log_settings(basedir='', basename='log', level='DEBUG', **kwargs):
         'loggers': {
             # root loggers
             '': {
-                'level': 'DEBUG',
+                'level': level,
                 'handlers': ['console'],
                 'propagate': False,
             },

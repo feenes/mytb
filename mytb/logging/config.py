@@ -29,6 +29,7 @@ def get_default_log_settings(**kwargs):
     name = kwargs.get('name', 'mytb')
     enable_file_handler = kwargs.get('logtofile')
     handlers = ["console"]
+    level = kwargs.get("level", "WARNING")
     cfg = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -45,21 +46,21 @@ def get_default_log_settings(**kwargs):
         },
         "handlers": {
             "console": {
-                "level": "WARNING",
+                "level": level,
                 "class": "logging.StreamHandler",
                 "formatter": "simple"
             },
         },
         "loggers": {
             "": {
-                "level": "INFO",
+                "level": level,
                 "handlers": handlers,
             },
         }
     }
     if enable_file_handler:
         handlers["file"] = {
-            "level": "INFO",
+            "level": level,
             "class": "logging.FileHandler",
             "filename": "%s/%s.log" % (logdir, name),
             "formatter": "verbose"

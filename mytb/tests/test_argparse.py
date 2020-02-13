@@ -25,7 +25,16 @@ class ArgParseTestCase(unittest.TestCase):
         self.assertEqual(
             set(vars(options).keys()),
             set(['app_name', 'log_config']))
-        self.assertEqual(options.log_config, None)
+        self.assertEqual(
+            options.log_config,
+            'mytb.logging.configs.console:level=WARNING',
+            )
+
+        options = parser.parse_args(['-L', ''])
+        self.assertEqual(
+            options.log_config,
+            '',
+            )
 
         #  -L switch works
         options = parser.parse_args(['-L', 'tido'])
