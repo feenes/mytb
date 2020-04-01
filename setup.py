@@ -9,7 +9,7 @@ long_description = """small modules and tools useful for many projects
 """
 
 setup(name="mytb",
-      version="0.0.14",
+      version="0.0.15",
       description="my toolbox for everyday python projects",
       long_description=long_description,
       long_description_content_type="text/x-rst",
