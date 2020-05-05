@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 import os
 
 from mytb.exceptions import MyTBError
@@ -14,7 +16,7 @@ def robust_makedirs(path):
             os.makedirs(path)
         except Exception:
             if not os.path.isdir(path):
-                if os.path.osfile(path):
+                if os.path.isfile(path):
                     raise MyTBError("path %r is not a directory" % path)
                 else:
                     raise
