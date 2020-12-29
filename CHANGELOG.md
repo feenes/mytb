@@ -3,6 +3,7 @@
 ## [v0.0.15](https://github.com/feenes/mytb/compare/v0.0.14...v0.0.15)
 * minor update for argparse + logging config
 * fix for robust_makedirs()
+* first shot at code owners
 ## [v0.0.14](https://github.com/feenes/mytb/compare/v0.0.13...v0.0.14)
 * robust makedirs() without race conditions
 ## [v0.0.13](https://github.com/feenes/mytb/compare/v0.0.12...v0.0.13)
