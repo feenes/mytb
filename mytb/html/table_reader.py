@@ -13,20 +13,17 @@ __author__    = "Klaus Foerster"
 """
 # #############################################################################
 
+import html.parser
 import logging
 
 from collections import deque
 from collections import OrderedDict
 
-from six.moves import html_parser
-from six import binary_type, text_type
 
-
-string_types = (binary_type, text_type)
 logger = logging.getLogger(__name__)
 
 
-class TableParser(html_parser.HTMLParser):
+class TableParser(html.parser.HTMLParser):
     """ simple parser  parsing the first table in an html document """
     S_INIT = 0
     S_TABLE = 1
@@ -34,7 +31,7 @@ class TableParser(html_parser.HTMLParser):
     S_COL = 3
 
     def __init__(self):
-        html_parser.HTMLParser.__init__(self)
+        super().__init__()
         self.to_yield = deque()
         self.state = self.S_INIT
         self.tagcnt = 0
@@ -88,7 +85,7 @@ class TableReader(object):
                     characters from an object
         """
         self._from_fname = False
-        if type(fin) in string_types:
+        if isinstance(fin, str):
             fin = open(fin, encoding=encoding)
             self._from_fname = True
 
