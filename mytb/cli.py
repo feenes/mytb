@@ -17,8 +17,6 @@ try:
 except Exception:
     HAVE_CODE = False
 
-from builtins import input
-
 
 logger = logging.getLogger(__name__)
 
