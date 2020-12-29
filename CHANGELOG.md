@@ -1,5 +1,8 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
+## [v0.1.0](https://github.com/feenes/mytb/compare/v0.15...v0.1.0)
+* support only python versions > 3.5
+* remove code that ensured py2 backwards compatibility
 ## [v0.0.15](https://github.com/feenes/mytb/compare/v0.0.14...v0.0.15)
 * minor update for argparse + logging config
 * fix for robust_makedirs()
