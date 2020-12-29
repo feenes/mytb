@@ -28,8 +28,6 @@ def simple_shell(ctx):
     import code
 
     shell = code.InteractiveConsole(ctx)
-    shell.push("from __future__ import print_function")
-    shell.push("from __future__ import absolute_import")
     shell.interact()
 
 

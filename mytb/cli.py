@@ -31,8 +31,6 @@ def simple_code_shell(namespace):
         print("readline not found")
 
     shell = code.InteractiveConsole(namespace)
-    shell.push("from __future__ import print_function")
-    shell.push("from __future__ import absolute_import")
     shell.interact()
 
 
