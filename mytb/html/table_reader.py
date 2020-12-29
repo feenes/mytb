@@ -18,8 +18,6 @@ import logging
 from collections import deque
 from collections import OrderedDict
 
-from io import open
-
 from six.moves import html_parser
 from six import binary_type, text_type
 
