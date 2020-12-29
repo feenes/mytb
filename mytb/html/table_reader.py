@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from __future__ import absolute_import
-from __future__ import print_function
 # ############################################################################
 # Copyright  : (C) 2014 by MHComm. All rights reserved
 #

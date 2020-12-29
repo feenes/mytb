@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 """
 Helper to get info about memory consumption
 """

@@ -9,8 +9,6 @@
 """
 #
 # #############################################################################
-from __future__ import print_function
-
 # python std modules
 import argparse
 import sys

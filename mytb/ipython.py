@@ -1,6 +1,3 @@
-from __future__ import absolute_import
-from __future__ import print_function
-
 # #############################################################################
 # Copyright : (C) 2019 by Teledomic.eu All rights reserved
 #
