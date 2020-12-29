@@ -12,18 +12,6 @@ stages:
     - lint
     - test
 
-flake2:
-  tags:
-    - shell
-  stage: lint
-  allow_failure: false
-  script:
-    - virtualenv -p $(pyenv which python2.7) venv2
-    - source venv2/bin/activate
-    - python -m pip install -r requirements/all_py2.txt
-    - python -m pip install -U flake8
-    - python -m flake8 mytb
-
 flake3:
   tags:
     - shell
@@ -43,7 +31,7 @@ tox:
   stage: test
   allow_failure: true
   script:
-    - virtualenv -p $(pyenv which python2.7) venv2
-    - source venv2/bin/activate ; python -m pip install tox
+    - virtualenv -p $(pyenv which python3.5) venv3
+    - source venv3/bin/activate ; python -m pip install tox
     - tox
 
