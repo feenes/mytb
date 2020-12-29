@@ -1,1 +1,0 @@
--r requirements/all_py2.txt

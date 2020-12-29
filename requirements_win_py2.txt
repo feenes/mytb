@@ -1,2 +1,0 @@
--r requirements/base_py2.txt
--r requirements/win_py2.txt
