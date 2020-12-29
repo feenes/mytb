@@ -9,7 +9,7 @@ long_description = """small modules and tools useful for many projects
 """
 
 setup(name="mytb",
-      version="0.0.15",
+      version="0.0.16",
       description="my toolbox for everyday python projects",
       long_description=long_description,
       long_description_content_type="text/x-rst",
@@ -57,7 +57,7 @@ setup(name="mytb",
             "pyyaml",
             ],
         ),
-      python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4",
+      python_requires=">=2.7, <3.0",
       setup_requires=["pytest-runner"],
       tests_require=["pytest"],
       zip_safe=False,
