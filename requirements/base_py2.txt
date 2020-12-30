@@ -1,3 +1,0 @@
--r base.txt
-more-itertools<6.0
-minibelt<0.2.0

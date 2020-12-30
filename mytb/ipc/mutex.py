@@ -7,9 +7,6 @@
 # Description:  crossplatform IPC mutex (windows / linux)
 #
 # #############################################################################
-from __future__ import absolute_import
-
-
 from mytb.os import is_posix, is_windows
 
 if is_posix():

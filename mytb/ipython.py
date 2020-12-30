@@ -1,6 +1,3 @@
-from __future__ import absolute_import
-from __future__ import print_function
-
 # #############################################################################
 # Copyright : (C) 2019 by Teledomic.eu All rights reserved
 #
@@ -31,8 +28,6 @@ def simple_shell(ctx):
     import code
 
     shell = code.InteractiveConsole(ctx)
-    shell.push("from __future__ import print_function")
-    shell.push("from __future__ import absolute_import")
     shell.interact()
 
 

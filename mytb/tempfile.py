@@ -7,8 +7,6 @@
 # Description:  helpers for temp files
 #
 # #############################################################################
-from __future__ import absolute_import, print_function
-
 # python std modules
 import os
 import tempfile

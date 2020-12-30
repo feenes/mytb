@@ -1,7 +1,3 @@
-from __future__ import absolute_import
-from __future__ import print_function
-
-
 # -----------------------------------------------------------------------------
 #   Imports
 # -----------------------------------------------------------------------------
@@ -21,8 +17,6 @@ try:
 except Exception:
     HAVE_CODE = False
 
-from builtins import input
-
 
 logger = logging.getLogger(__name__)
 
@@ -37,8 +31,6 @@ def simple_code_shell(namespace):
         print("readline not found")
 
     shell = code.InteractiveConsole(namespace)
-    shell.push("from __future__ import print_function")
-    shell.push("from __future__ import absolute_import")
     shell.interact()
 
 
