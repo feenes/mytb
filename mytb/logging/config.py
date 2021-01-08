@@ -147,7 +147,7 @@ def config_logger(cfg_name, name):
 
     # can I find a config file
     if os.path.isfile(cfg_name):
-        suffix = os.path.splitext(cfg_name).lower()
+        suffix = os.path.splitext(cfg_name)[1].lower()
         # allowed_suffixes = [
         #     '.json', '.yaml', '.ini', '.py', '.pyw', '.pyc', '.pyo' ]
         allowed_suffixes = ['.py', ]
