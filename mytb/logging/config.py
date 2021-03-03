@@ -23,6 +23,9 @@ from mytb.importlib import module_exists
 
 
 def get_default_log_settings(**kwargs):
+    """
+    creates default logger settings, that are good enough for many cases
+    """
     logdir = kwargs.get('log_dir', '.')
     name = kwargs.get('name', 'mytb')
     enable_file_handler = kwargs.get('logtofile')
@@ -100,7 +103,9 @@ def shall_configure_logging(name=None):
 
 
 def split_config(log_config):
-    """ splits log config int the config name and its arguments
+    """
+    splits log config into the config name and its arguments
+
         This is not fully implemented. it will split on ' ' or
             on ':' depending what occurs first
     """
@@ -118,8 +123,9 @@ def split_config(log_config):
 
 
 def config_logger(cfg_name, name):
-    """ tries to locate a log configuration and apply it
-        rules:
+    """ tries to locate a log configuration and apply it.
+
+        Rules:
         1.) split cfg_name into cfg_name and cfg_args
         2.) if cfg_name is a file name, the determine its file type and load it
                 accordingly. only python files will handle the passed args
@@ -130,6 +136,8 @@ def config_logger(cfg_name, name):
                log_settings.<cfg_name>_default
                log_settings.default
                log_settings.default_default
+               mytb.logging.configs.<cfg_name>
+               mytb.logging.config
             accept the first module, that contains a dict named LOGGING
             or has a callable named get_log_settings(), or a callable
                 setup_logging()
@@ -215,9 +223,8 @@ def config_logger(cfg_name, name):
 #     logging.config.dictConfig(cfg)
 
 
-def getLogger(name=None, force_config=False):
-    """ gets a logger (like logging.getLogger()
-        and if called from a main module or force_config=True
+def setupLogging(name=None, force_config=False):
+    """ if called from a main module or force_config=True
         setup logging according to some rules
         as described in config_logger()
     """
@@ -232,4 +239,13 @@ def getLogger(name=None, force_config=False):
         log_cfg = getattr(options, LONG_LOG_SWITCH[2:].replace('-', '_'))
         # print("LOG_CFG: %r" % log_cfg)
         config_logger(log_cfg, name)
+
+
+def getLogger(name=None, force_config=False):
+    """ gets a logger (like logging.getLogger()
+        and if called from a main module or force_config=True
+        setup logging according to some rules
+        as described in config_logger()
+    """
+    setupLogging(name, force_config)
     return logging.getLogger(name)
