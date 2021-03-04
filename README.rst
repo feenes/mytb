@@ -26,3 +26,12 @@ With pip ::
 
     **!!version 0.1 is only python 3 compatible!!**
     Use `pip install 'mytb<0.1'` to get the latest python2 compatible version
+
+Who's using mytb
+==================
+
+Please contact us if you want to be referenced
+
+    * MHComm ( https://mhcomm.fr ) for some of their software
+    * The timon project ( https://github.com/feenes/timon )
+
