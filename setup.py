@@ -8,7 +8,7 @@ long_description = """small modules and tools useful for many projects
 """
 
 setup(name="mytb",
-      version="0.1.0",
+      version="0.1.1",
       description="my toolbox for everyday python projects",
       long_description=long_description,
       long_description_content_type="text/x-rst",
@@ -42,6 +42,7 @@ setup(name="mytb",
         minimal=[],
         all=[
             "dateutils",
+            "ddt",
             "pytz",
             "tzlocal",
             "pyyaml",
@@ -52,12 +53,13 @@ setup(name="mytb",
             "tzlocal",
             ],
         gitlab=[
+            "ddt",
             "pyyaml",
             ],
         ),
       python_requires=">=3.5, <4",
       setup_requires=["pytest-runner"],
-      tests_require=["pytest"],
+      tests_require=["pytest", "pytest-tempdir"],
       zip_safe=False,
       include_package_data=True,
       )
