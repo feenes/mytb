@@ -22,4 +22,3 @@ class SuffixFile(object):
     def open(cls, fname, mode="r", **kwargs):
         """ opens file with respective compression / decompression """
         return open(fname, mode, **kwargs)
-

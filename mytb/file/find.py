@@ -12,7 +12,6 @@ __email__     = "info@mhcomm.fr"
 
 """
 # #############################################################################
-import logging
 import os
 
 
@@ -43,4 +42,3 @@ def file_find(basedir, relpath=False, dir_filter=None, file_filter=None,
     else:
         for full_path in full_paths:
             yield full_path
-

@@ -58,4 +58,3 @@ def mk_modname(pm_name):
         mod_name = mod_name.replace('/', '.')
         mod_name = mod_name.replace('\\', '.')
     return mod_name
-

@@ -26,9 +26,9 @@ def parse_paramstr(argstr, sep=None, sep_re=None):
     if not (sep or sep_re):
         sep = ":"
     if sep:
-        assigns = argstr.split(sep):
+        assigns = argstr.split(sep)
     else:
-        assigns = re.split(rsep, ):
+        assigns = re.split(sep_re, argstr)
 
     rslt = OrderedDict()
     for kv in assigns:

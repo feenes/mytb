@@ -1,3 +1,4 @@
+import json
 import logging
 
 from collections import OrderedDict
@@ -105,5 +106,3 @@ class VersionObject:
         with open(fname) as fin:
             data = json.load(fin)
         return cls.from_dict(data)
-
-
