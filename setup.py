@@ -37,6 +37,7 @@ setup(name="mytb",
       },
       install_requires=[
         "minibelt",
+        "unidecode",
         ],
       extras_require=dict(
         minimal=[],
@@ -44,8 +45,9 @@ setup(name="mytb",
             "dateutils",
             "ddt",
             "pytz",
-            "tzlocal",
             "pyyaml",
+            "tzlocal",
+            "unidecode",
             ],
         date=[
             "dateutils",

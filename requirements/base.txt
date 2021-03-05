@@ -4,3 +4,4 @@ minibelt
 pytz
 pyyaml
 tzlocal
+unidecode
