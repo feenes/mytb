@@ -1,5 +1,8 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
+## [v0.0.16](https://github.com/feenes/mytb/compare/v0.0.15...v0.0.16)
+* slightly enhanced README
+* disallow python3 (use versions > 0.1 for py3)
 ## [v0.0.15](https://github.com/feenes/mytb/compare/v0.0.14...v0.0.15)
 * minor update for argparse + logging config
 * fix for robust_makedirs()
