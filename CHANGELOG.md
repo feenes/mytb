@@ -1,6 +1,19 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
 
-## [v0.1.0](https://github.com/feenes/mytb/compare/v0.15...v0.1.0)
+## [v0.1.1](https://github.com/feenes/mytb/compare/v0.1.0...v0.1.1)
+* stop python 3.5 compativility (so far only mytb.modules needs >=3.6)
+* add github workflow for flake ind pytest
+* add mod file.find with file_find_tuple and file_find
+* add mod file.suffix_file.SuffixFile (not fully implemented)
+* add mod importlib with import_obj, import_if_mod_exists
+* add mod modules with get_modules and mk_modname
+* add mod objects with AnyObj and VersionObject
+* add mod parse with parse_paramstr
+* add mod pickle with robust_unpickler and unpickle_robust (not fully implemented)
+* enhance mod string with strip_accents
+* cleanup/fix requirements and setup dependencies
+* minor enhancements to README.md
+## [v0.1.0](https://github.com/feenes/mytb/compare/v0.0.15...v0.1.0)
 * support only python versions > 3.5
 * remove code that ensured py2 backwards compatibility
 * fixed suffix extraction of log config
