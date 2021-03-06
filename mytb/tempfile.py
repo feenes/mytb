@@ -7,7 +7,6 @@
 # Description:  helpers for temp files
 #
 # #############################################################################
-# python std modules
 import os
 import tempfile
 

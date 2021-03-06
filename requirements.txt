@@ -1,2 +1,1 @@
 -r requirements/base.txt
--r requirements/base_py3.txt

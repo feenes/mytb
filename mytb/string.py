@@ -1,3 +1,6 @@
+from unidecode import unidecode
+
+
 def str2bool(val):
     """ converts a string to a boolean value
         if a non string value is passed
@@ -22,3 +25,12 @@ def str2bool(val):
         return False
 
     raise ValueError("can't convert %r to bool" % val)
+
+
+def strip_accents(astring):
+    """
+    Accept a unicode string, and returns a string (type str)
+    without any diacritical marks.
+    """
+    rslt = unidecode(astring)
+    return rslt

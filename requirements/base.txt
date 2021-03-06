@@ -1,5 +1,7 @@
 future
 dateutils
+minibelt
 pytz
 pyyaml
 tzlocal
+unidecode
