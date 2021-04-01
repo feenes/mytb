@@ -10,7 +10,6 @@
 import os
 import sys
 
-
 _RELEASE = None  # well, OS version just has to be determined once
 
 

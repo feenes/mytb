@@ -10,9 +10,9 @@
 # #############################################################################
 
 
+import argparse
 import os
 import sys
-import argparse
 
 from mytb.string import str2bool
 
