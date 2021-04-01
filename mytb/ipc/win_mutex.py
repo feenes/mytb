@@ -10,10 +10,10 @@
 import os
 
 if os.name == 'win32':
-    from win32event import CreateMutex
-    from win32event import WaitForSingleObject
-    from win32event import ReleaseMutex
     from win32api import GetLastError
+    from win32event import CreateMutex
+    from win32event import ReleaseMutex
+    from win32event import WaitForSingleObject
     from winerror import ERROR_ALREADY_EXISTS
 
 

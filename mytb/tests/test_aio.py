@@ -9,6 +9,7 @@ import pytest
 def test_aio_compat():
     """ can patch old asyncios """
     import asyncio
+
     import mytb.aio.compat
     mytb.aio.compat.patch()
 

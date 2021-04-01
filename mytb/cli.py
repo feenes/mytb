@@ -26,7 +26,7 @@ def simple_code_shell(namespace):
         but code can be imported
     """
     try:
-        import readline
+        import readline  # noqa
     except Exception:
         print("readline not found")
 
