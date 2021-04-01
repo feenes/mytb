@@ -24,6 +24,25 @@ flake3:
     - python -m pip install -U flake8
     - python -m flake8 mytb
 
+isort:
+  tags:
+    - shell
+  stage: lint
+  allow_failure: false
+  script:
+    - "echo $(which python ; python -V 2>&1)"
+    - python -m pip install -U isort
+    - python -m pip freeze > pipfreeze.txt
+    - python -m pip check
+    - python -m isort --diff | tee isort_report.txt
+  artifacts:
+    when: always
+    paths:
+        - pipfreeze.txt
+        - isort_report.txt
+        - isort_errors.txt
+    expire_in: 1 month
+
 tox:
   <<: *cache
   tags:

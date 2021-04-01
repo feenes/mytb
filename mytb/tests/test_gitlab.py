@@ -13,12 +13,14 @@ import unittest
 
 # first party modules
 import yaml
-from ddt import data, ddt
+from ddt import data
+from ddt import ddt
 
 # mytb modules
 from mytb.gitlab.check_ci_cfg import check_cfg_file
 from mytb.tempfile import mktemp_fname
-from mytb.tests.gitlab.cicfg_patterns import fail_patterns, pass_patterns
+from mytb.tests.gitlab.cicfg_patterns import fail_patterns
+from mytb.tests.gitlab.cicfg_patterns import pass_patterns
 
 
 @ddt

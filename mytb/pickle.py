@@ -17,7 +17,6 @@ robust pickling / unpickling should be implemented lateron
 """
 # #############################################################################
 import pickle
-
 from io import BytesIO
 
 

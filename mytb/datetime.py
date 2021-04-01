@@ -1,12 +1,10 @@
-import pytz
 import re
-import tzlocal
-
 from datetime import datetime
 from datetime import timedelta
 
 import dateutil.parser
-
+import pytz
+import tzlocal
 
 # datetime objct for beginning of epoch
 T_EPOCH = datetime(1970, 1, 1, tzinfo=pytz.utc)

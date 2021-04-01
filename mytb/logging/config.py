@@ -7,14 +7,14 @@
 # Description:  helpers to get fast and quick a decent log configuration
 #
 # #############################################################################
-import os
-import sys
-import logging
-import logging.config
-import re
-import inspect
 # import json
 import importlib
+import inspect
+import logging
+import logging.config
+import os
+import re
+import sys
 
 import __main__
 
@@ -231,7 +231,8 @@ def setupLogging(name=None, force_config=False):
     # print("GETL %s FC=%s SCL %s" %
     #     (name, force_config, shall_configure_logging(name)))
     if force_config or shall_configure_logging(name):
-        from mytb.argparse import mk_parser, LONG_LOG_SWITCH
+        from mytb.argparse import LONG_LOG_SWITCH
+        from mytb.argparse import mk_parser
         args = sys.argv[1:]
         parser = mk_parser(add_help=False)
         options, unknown = parser.parse_known_args(args)

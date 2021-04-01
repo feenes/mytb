@@ -22,7 +22,7 @@ def simple_shell(ctx):
     """ basic interactive shell if ipython is not found
     """
     try:
-        import readline  # noqa: F401
+        import readline  # noqa
     except Exception:
         print("readline not found")
     import code

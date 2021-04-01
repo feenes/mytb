@@ -8,8 +8,8 @@
 #
 # #############################################################################
 
-import os
 import fcntl
+import os
 from tempfile import tempdir
 
 
