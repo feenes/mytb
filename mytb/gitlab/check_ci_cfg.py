@@ -19,7 +19,6 @@ import sys
 # first party modules
 import yaml
 
-
 rex = re.compile  # compile a regex
 
 

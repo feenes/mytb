@@ -7,7 +7,8 @@
 # Description:  crossplatform IPC mutex (windows / linux)
 #
 # #############################################################################
-from mytb.os import is_posix, is_windows
+from mytb.os import is_posix
+from mytb.os import is_windows
 
 if is_posix():
     from .posix_mutex import PosixMutex as IPCMutex
