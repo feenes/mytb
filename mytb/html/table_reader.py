@@ -15,10 +15,8 @@ __author__    = "Klaus Foerster"
 
 import html.parser
 import logging
-
-from collections import deque
 from collections import OrderedDict
-
+from collections import deque
 
 logger = logging.getLogger(__name__)
 

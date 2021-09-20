@@ -1,8 +1,8 @@
 # -----------------------------------------------------------------------------
 #   Imports
 # -----------------------------------------------------------------------------
-import threading
 import logging
+import threading
 
 try:
     import IPython.terminal.embed
@@ -26,7 +26,7 @@ def simple_code_shell(namespace):
         but code can be imported
     """
     try:
-        import readline  # noqa: F401
+        import readline  # noqa
     except Exception:
         print("readline not found")
 

@@ -6,10 +6,10 @@ import tzlocal
 
 import mytb.datetime
 
-from mytb.datetime import DateTime
 # from mytb.datetime import Date
 # from mytb.datetime import Time
 # from mytb.datetime import fname_to_time
+from mytb.datetime import DateTime
 from mytb.datetime import to_timestamp
 
 
