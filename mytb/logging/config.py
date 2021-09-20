@@ -129,7 +129,9 @@ def config_logger(cfg_name, name):
         1.) split cfg_name into cfg_name and cfg_args
         2.) if cfg_name is a file name, the determine its file type and load it
                 accordingly. only python files will handle the passed args
-        3.) for cfg_names, that are NOT a file try to import following module
+        3.) if cfg_name is not a filename and it starts with "." then add the
+            current working directory to the python path (append it)
+        4.) for cfg_names, that are NOT a file try to import following module
             in following order:
                <cfg_name>
                log_settings.<cfg_name>
@@ -238,6 +240,13 @@ def setupLogging(name=None, force_config=False):
         options, unknown = parser.parse_known_args(args)
         # print("OPTIONS", options)
         log_cfg = getattr(options, LONG_LOG_SWITCH[2:].replace('-', '_'))
+
+        if log_cfg.startswith(".") and not os.path.isfile(log_cfg):
+            log_cfg = log_cfg[1:]
+            mydir = os.path.realpath(".")
+            if mydir not in sys.path:
+                sys.path.append(mydir)
+
         # print("LOG_CFG: %r" % log_cfg)
         config_logger(log_cfg, name)
 
