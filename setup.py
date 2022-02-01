@@ -44,6 +44,7 @@ setup(name="mytb",
         all=[
             "dateutils",
             "ddt",
+            "paramiko",
             "pytz",
             "pyyaml",
             "tzlocal",
@@ -57,6 +58,9 @@ setup(name="mytb",
         gitlab=[
             "ddt",
             "pyyaml",
+            ],
+        ssh=[
+            "paramiko",
             ],
         ),
       python_requires=">=3.6, <4",

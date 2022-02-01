@@ -1,6 +1,7 @@
 future
 dateutils
 minibelt
+paramiko
 pytz
 pyyaml
 tzlocal
