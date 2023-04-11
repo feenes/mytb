@@ -14,7 +14,7 @@ import argparse
 import sys
 
 # third party modules
-import minibelt
+import mytb.minibelt as minibelt
 
 # TODO: add autodiscovery
 commands = [(
