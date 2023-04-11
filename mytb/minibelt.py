@@ -40,11 +40,12 @@ except ImportError:
 __version__ = '0.2.2'
 
 __all__ = [
-'slugify', 'normalize', 'json_dumps', 'json_loads', 'CLASSIC_DATETIME_FORMAT',
-'to_timestamp', 'import_from_path', 'attr', 'chunks', 'window', 'dmerge',
-'get', 'subdict', 'iget', 'skip_duplicates', 'sset', 'unpack',
-'add_to_pythonpath', 'write', 'flatten'
-]
+    'slugify', 'normalize', 'json_dumps', 'json_loads',
+    'CLASSIC_DATETIME_FORMAT', 'import_from_path',
+    'attr', 'chunks', 'window', 'dmerge',
+    'get', 'subdict', 'iget', 'skip_duplicates', 'sset', 'unpack',
+    'add_to_pythonpath', 'write', 'flatten'
+    ]
 
 CLASSIC_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
 CLASSIC_DATETIME_PATTERN = r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6}'
@@ -75,8 +76,8 @@ try:
         string = normalize(string)
         string = re.sub(r'[^\w\s' + separator + ']', '',  string, flags=re.U)
         string = string.strip().lower()
-        return re.sub(r'[' + separator + '\s]+', separator, string, flags=re.U)
-
+        return re.sub(
+            r'[' + separator + r'\s]+', separator, string, flags=re.U)
 
     def normalize(string):
         r"""
@@ -109,9 +110,9 @@ except ImportError:
             This version use unicodedata and provide limited yet
             useful results.
         """
-        string = unicodedata.normalize('NFKD', string).encode('ascii', 'ignore')
+        string = unicodedata.normalize('NFKD', string).encode(
+            'ascii', 'ignore')
         return string.decode('ascii')
-
 
     def slugify(string, separator=r'-'):
         r"""
@@ -130,8 +131,8 @@ except ImportError:
         string = normalize(string)
         string = re.sub(r'[^\w\s' + separator + ']', '', string, flags=re.U)
         string = string.strip().lower()
-        return re.sub(r'[' + separator + '\s]+', separator, string, flags=re.U)
-
+        return re.sub(
+            r'[' + separator + r'\s]+', separator, string, flags=re.U)
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -146,16 +147,15 @@ class JSONEncoder(json.JSONEncoder):
     DATE_FORMAT, TIME_FORMAT = DATETIME_FORMAT.split()
     TIMEDELTA_FORMAT = "timedelta(seconds='%s')"
 
-
-    def __init__(self, datetime_format=None, date_format=None, time_format=None,
-                timedelta_format=None, *args, **kwargs):
+    def __init__(
+            self, datetime_format=None, date_format=None, time_format=None,
+            timedelta_format=None, *args, **kwargs):
 
         self.datetime_format = datetime_format or self.DATETIME_FORMAT
         self.date_format = date_format or self.DATE_FORMAT
         self.time_format = time_format or self.TIME_FORMAT
         self.timedelta_format = timedelta_format or self.TIMEDELTA_FORMAT
         super(JSONEncoder, self).__init__(*args, **kwargs)
-
 
     def default(self, obj):
 
@@ -183,26 +183,28 @@ class JSONDecoder(json.JSONDecoder):
     DATE_PATTERN, TIME_PATTERN = DATETIME_PATTERN.split()
     TIMEDELTA_PATTERN = r"timedelta\(seconds='(?P<seconds>\d+(?:\.\d+)*)'\)"
 
-
-    def __init__(self, datetime_pattern=None, date_pattern=None,
-                time_pattern=None, timedelta_pattern=None, datetime_format=None,
-                date_format=None, time_format=None, *args, **kwargs):
+    def __init__(
+            self, datetime_pattern=None, date_pattern=None,
+            time_pattern=None, timedelta_pattern=None, datetime_format=None,
+            date_format=None, time_format=None, *args, **kwargs):
 
         self.datetime_format = datetime_format or JSONEncoder.DATETIME_FORMAT
         self.date_format = date_format or JSONEncoder.DATE_FORMAT
         self.time_format = time_format or JSONEncoder.TIME_FORMAT
 
-        self.datetime_pattern = re.compile(datetime_pattern or self.DATETIME_PATTERN)
+        self.datetime_pattern = re.compile(
+            datetime_pattern or self.DATETIME_PATTERN)
         self.date_pattern = re.compile(date_pattern or self.DATE_PATTERN)
         self.time_pattern = re.compile(time_pattern or self.TIME_PATTERN)
-        self.timedelta_pattern = re.compile(timedelta_pattern or self.TIMEDELTA_PATTERN)
+        self.timedelta_pattern = re.compile(
+            timedelta_pattern or self.TIMEDELTA_PATTERN)
 
-        super(JSONDecoder, self).__init__(object_pairs_hook=self.object_pairs_hook,
-                                          *args, **kwargs)
+        super(JSONDecoder, self).__init__(
+            object_pairs_hook=self.object_pairs_hook,
+            *args, **kwargs)
 
     def object_pairs_hook(self, obj):
         return dict((k, self.decode_on_match(v)) for k, v in obj)
-
 
     def decode_on_match(self, obj):
         """
@@ -231,8 +233,9 @@ class JSONDecoder(json.JSONDecoder):
         return obj
 
 
-def json_dumps(data, datetime_format=None, date_format=None, time_format=None,
-                timedelta_format=None, *args, **kwargs):
+def json_dumps(
+        data, datetime_format=None, date_format=None, time_format=None,
+        timedelta_format=None, *args, **kwargs):
     r"""
         Same as Python's json.dumps but also serialize datetime, date, time
         and timedelta.
@@ -255,12 +258,13 @@ def json_dumps(data, datetime_format=None, date_format=None, time_format=None,
                        timedelta_format, *args, **kwargs).encode(data)
 
 
-def json_loads(string, datetime_pattern=None, date_pattern=None,
-                time_pattern=None, timedelta_pattern=None, datetime_format=None,
-                date_format=None, time_format=None, *args, **kwargs):
+def json_loads(
+        string, datetime_pattern=None, date_pattern=None,
+        time_pattern=None, timedelta_pattern=None, datetime_format=None,
+        date_format=None, time_format=None, *args, **kwargs):
     r"""
-        Same as Python's json.loads, but handles formats from batbelt.json_dumps
-        which are currently mainly date formats.
+        Same as Python's json.loads, but handles formats from
+        batbelt.json_dumps which are currently mainly date formats.
 
         Example:
 
@@ -272,7 +276,8 @@ def json_loads(string, datetime_pattern=None, date_pattern=None,
             {'test': datetime.time(1, 1, 1)}
             >>> json_loads('{"test": "timedelta(seconds=\'86401.0\')"}')
             {'test': datetime.timedelta(1, 1)}
-            >>> json_loads('{"test": "timedelta(seconds=\'86401.0\')", "a": [1, 2]}')
+            >>> json_loads('{"test": "timedelta(
+                seconds=\'86401.0\')", "a": [1, 2]}')
             {'test': datetime.timedelta(1, 1), 'a': [1, 2]}
 
     """
@@ -287,10 +292,10 @@ def import_from_path(path):
     """
     module_name, class_name = path.rsplit('.', 1)
     try:
-        return getattr(__import__(module_name, fromlist=[class_name]), class_name)
+        return getattr(
+            __import__(module_name, fromlist=[class_name]), class_name)
     except AttributeError:
         raise ImportError('Unable to import %s' % path)
-
 
 
 def attr(obj, *attrs, **kwargs):
@@ -326,7 +331,6 @@ def chunks(seq, chunksize, process=tuple):
     it = iter(seq)
     while True:
         yield process(chain([next(it)], islice(it, chunksize - 1)))
-
 
 
 def window(iterable, size=2, cast=tuple):
@@ -390,7 +394,6 @@ def dmerge(d1, d2, merge_func=None):
     return d
 
 
-
 def get(data, *keys, **kwargs):
     """
         Extract a data from nested mapping and sequences using a list of keys
@@ -416,7 +419,6 @@ def get(data, *keys, **kwargs):
         return kwargs.get('default', None)
 
     return value
-
 
 
 def subdict(dct, include=(), exclude=()):
@@ -468,8 +470,9 @@ def iget(data, value, default=None):
         >>> iget(xrange(10), -10000, default='wololo')
         'wololo'
 
-        Remember it has to consume the generator to get its elements so be careful
-        if you need an element at the end of it, you will empty your generator.
+        Remember it has to consume the generator to get its elements so be
+        careful if you need an element at the end of it, you will empty your
+        generator.
 
         Also if you pass an infinite generator and ask for a negative value,
         it will hang forever. Use itertools.islice to be sure your generator
@@ -539,9 +542,11 @@ def skip_duplicates(iterable, key=lambda x: x):
 
         :Example:
 
-            >>> list(skip_duplicates(([], [], (), [1, 2], (1, 2)), lambda x: tuple(x)))
+            >>> list(skip_duplicates(([], [], (), [1, 2], (1, 2)),
+                lambda x: tuple(x)))
             [[], [1, 2]]
-            >>> list(skip_duplicates(([], [], (), [1, 2], (1, 2)), lambda x: (type(x), tuple(x))))
+            >>> list(skip_duplicates(([], [], (), [1, 2], (1, 2)),
+                lambda x: (type(x), tuple(x))))
             [[], (), [1, 2], (1, 2)]
 
         For more complex types, such as custom classes, the default behavior
@@ -558,7 +563,8 @@ def skip_duplicates(iterable, key=lambda x: x):
 
             >>> list(skip_duplicates([Test(), Test(), Test('other')]))
             [Test('bar'), Test('bar'), Test('other')]
-            >>> list(skip_duplicates([Test(), Test(), Test('other')], lambda x: x.foo))
+            >>> list(skip_duplicates([Test(), Test(),
+                Test('other')], lambda x: x.foo))
             [Test('bar'), Test('other')]
 
         See also :
@@ -588,12 +594,13 @@ def skip_duplicates(iterable, key=lambda x: x):
             hash(fingerprint)
         except TypeError:
             raise TypeError(
-                "Calculating the key on one element resulted in a non hashable "
-                "object of type '%s'. Change the 'key' parameter to a function "
-                "that always, returns a hashable object. Hint : primitives "
-                "like int, str or tuple, are hashable, dict, set and list are "
-                "not. \nThe object that triggered the error was:\n%s" % (
-                type(fingerprint), x)
+                "Calculating the key on one element resulted in a non "
+                "hashable object of type '%s'. Change the 'key' parameter "
+                "to a function that always, returns a hashable object. "
+                "Hint : primitives like int, str or tuple, are hashable, "
+                "dict, set and list are not. \n"
+                "The object that triggered the error was:\n%s"
+                % (type(fingerprint), x)
             )
         else:
             raise
@@ -706,10 +713,11 @@ def add_to_pythonpath(path, starting_point='.', insertion_index=None):
 
 def write(path, *args, **kwargs):
     r"""
-        Try to write to the file at `path` the values passed as `args` as lines.
+        Try to write to the file at `path` the values passed as `args`
+        as lines.
 
-        It will attempt decoding / encoding and casting automatically each value
-        to a string.
+        It will attempt decoding / encoding and casting automatically each
+        value to a string.
 
         This is an utility function : its slow and doesn't consider edge cases,
         but allow to do just what you want most of the time in one line.
@@ -727,9 +735,11 @@ def write(path, *args, **kwargs):
         You can optionally pass :
 
         mode : among 'a', 'w', which default to 'w'. Binary mode is forced.
-        encoding : which default to utf8 and will condition decoding AND encoding
-        errors : what to do when en encoding error occurs : 'replace' by default,
-                which replace faulty caracters with '?'
+        encoding : which default to utf8 and will condition decoding
+                   AND encoding
+        errors : what to do when en encoding error occurs : 'replace'
+                 by default,
+                 which replace faulty caracters with '?'
 
         You can pass string or unicode as *args, but if you pass strings,
         make sure you pass them with the same encoding you wish to write to
@@ -792,12 +802,15 @@ class Flattener(object):
                 a = [a, i] + [{'a': 1., 'b': {'c': 3.}}]
             print(a)
 
-            [[[], 0, {'a': 1.0, 'b': {'c': 3.0}}], 1, {'a': 1.0, 'b': {'c': 3.0}}]
+            [
+                [[], 0, {'a': 1.0, 'b': {'c': 3.0}}], 1,
+                {'a': 1.0, 'b': {'c': 3.0}}]
 
             new_ft = Flattener.DEFAULT_FLATTEN_TYPES + (dict,)
 
-            dico_flatten = Flattener(flatten_types=new_ft,
-                                     iterable_getters={dict: lambda x: x.items()})
+            dico_flatten = Flattener(
+                flatten_types=new_ft,
+                iterable_getters={dict: lambda x: x.items()})
 
             print(list(dico_flatten(a)))
 
@@ -816,11 +829,9 @@ class Flattener(object):
         # Sequence # warning, a string is a subclass of Sequence
     )
 
-
     def __init__(self, flatten_types=None, iterable_getters={}):
         self.flatten_types = flatten_types or self.DEFAULT_FLATTEN_TYPES
         self.iterable_getters = iterable_getters
-
 
     def should_flatten(self, obj):
         """
@@ -829,7 +840,6 @@ class Flattener(object):
             by default.
         """
         return isinstance(obj, self.flatten_types)
-
 
     def transform_iterable(self, obj):
         """
@@ -853,7 +863,6 @@ class Flattener(object):
             return self.iterable_getters[obj.__class__](obj)
         return obj
 
-
     def __call__(self, iterable):
         """
             Returns a generator yieling items from a deeply nested iterable
@@ -865,7 +874,6 @@ class Flattener(object):
                     yield f
             else:
                 yield e
-
 
 
 flatten = Flattener()
