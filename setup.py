@@ -36,7 +36,6 @@ setup(name="mytb",
         "Tracker": "https://github.com/feenes/mytb/issues",
       },
       install_requires=[
-        "minibelt",
         "unidecode",
         ],
       extras_require=dict(
