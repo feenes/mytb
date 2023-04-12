@@ -1,3 +1,51 @@
+[build-system]
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.cor.masonry.api"
+
+
+[tool.poetry]
+name = "mytb"
+version = "0.2.1"
+description = "my toolbox for everyday python projects"
+authors = ["Teledomic <info@teledomic.eu>"]
+license = "MIT"
+homepage = "https://github.com/feenes/mytb"
+repository = "https://github.com/feenes/mytb.git"
+readme = "README.rst"
+
+
+[tool.poetry.dependencies]
+python = ">=3.6,<4"
+unidecode = "*"
+dateutils = {version = "*", optional = true}
+ddt = {version = "*", optional = true}
+pytz = {version = "*", optional = true}
+pyyaml = {version = "*", optional = true}
+tzlocal = {version = "*", optional = true}
+
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+pytest-tempdir = "^0.9"
+
+
+[tool.poetry.scripts]
+mytb = "mytb.commands:main"
+
+
+[tool.poetry.extras]
+minimal = []
+all = ["dateutils", "ddt", "pytz", "pyyaml", "tzlocal"]
+date = ["dateutils", "pytz", "tzlocal"]
+gitlab = ["ddt", "pyyaml"]
+
+
+
+[build]
+sdist = {}
+
+
 [tool.isort]
 profile = "black"
 force_single_line = true
@@ -10,3 +58,4 @@ known_mytb = ["mytb"]
 
 [tool.black]
 line-length = 80
+
