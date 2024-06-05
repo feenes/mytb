@@ -1,5 +1,8 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
-
+## [v0.1.2](https://github.com/feenes/mytb/compare/v0.1.1...v0.1.2)
+* removed dependency from minibelt (now included as mytb.minibelt)
+* isort on more source files
+* logcfg in curdir
 ## [v0.1.1](https://github.com/feenes/mytb/compare/v0.1.0...v0.1.1)
 * stop python 3.5 compativility (so far only mytb.modules needs >=3.6)
 * add github workflow for flake ind pytest
