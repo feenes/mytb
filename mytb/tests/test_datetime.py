@@ -40,7 +40,7 @@ def test_to_timestamp():
     back_utc = pytz.utc.localize(utcfromtimestamp(ts))
     assert back_utc == now
 
-    back_local = mytz.localize(datetime.fromtimestamp(ts))
+    back_local = datetime.fromtimestamp(ts).replace(tzinfo=mytz)
     assert back_local == now
 
     # works even after year 2038
@@ -62,6 +62,13 @@ def test_datetime_parse():
         mynow = DateTime.strptime(nowval)
         delta = (mynow - now).total_seconds()
         assert delta < 0.01
+
+    # Test parsing w default tzinfo
+    mytz = tzlocal.get_localzone()
+    now = datetime.now(mytz)
+    now_str_wo_tzinfo = now.strftime("%Y-%m-%d %H:%M:%S.%f")
+    mynow = DateTime.strptime(now_str_wo_tzinfo)
+    assert now == mynow
 
     # test dflt strptime
     adate = DateTime.strptime("2017-01-01", "%Y-%m-%d", tzinfo=None)

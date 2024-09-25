@@ -41,7 +41,7 @@ def get_modules(paths=None, exclude_test=False, report=None):
                 except Exception:
                     logger.warning("failed importing %r", mod_name)
                     error_modules.append(mod_name)
-                yield(mod)
+                yield mod
 
 
 def mk_modname(pm_name):

@@ -94,7 +94,6 @@ class DateTime(object):
         #        and rounding =
         #            d for days
         #            default no rounding
-
         tzinfo = tzinfo if tzinfo is not DEFAULT else tzlocal.get_localzone()
         if fmt:
             rslt = datetime.strptime(datestr, fmt)
@@ -108,9 +107,8 @@ class DateTime(object):
                 return cls.strptimedelta(datestr, tzinfo)
 
             rslt = dateutil.parser.parse(datestr)
-
         if rslt.tzinfo is None and tzinfo:
-            rslt = tzinfo.localize(rslt)
+            rslt = rslt.replace(tzinfo=tzinfo)
         return rslt
 
     @classmethod

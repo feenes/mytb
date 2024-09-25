@@ -122,7 +122,7 @@ def check_cfg_file(fname=None, text=None):
         with open(fname) as fin:
             text = fin.read()
     try:
-        cfg = yaml.load(text)
+        cfg = yaml.load(text, Loader=yaml.Loader)
     except (yaml.parser.ParserError,
             yaml.scanner.ScannerError) as exc:
         print("yaml syntax error")

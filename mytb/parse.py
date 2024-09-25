@@ -21,7 +21,7 @@ def parse_paramstr(argstr, sep=None, sep_re=None):
         :param sep_re: if set use regex or regex string as separator
         :returns: OrderedDict of keys, values
     """
-    assert not(sep and sep_re)  # only one of the params should be set
+    assert not (sep and sep_re)  # only one of the params should be set
     if not (sep or sep_re):
         sep = ":"
     if sep:
