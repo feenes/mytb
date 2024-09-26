@@ -33,9 +33,13 @@ jobs:
         - name: flake
           if: ${{ matrix.python-version < 'pypy' }}
           run: |
-            python -m flake8 mytb setup.py
+            python -m flake8 mytb
         - name: pytest
           run: |
             python -m pip install -r requirements/all.txt
             pytest
+        - name: can_make_dist
+          run: |
+            python -m pip install poetry
+            poetry install
 

@@ -1,4 +1,7 @@
 # [Changelog](https://github.com/feenes/mytb/releases)
+## [v0.1.3](https://github.com/feenes/mytb/compare/v0.1.2...v0.1.3)
+* Some fixes for py3.8+ versions (tzlocal.ZoneInfo.localize + yaml.load Loader parameter)
+* Move project topyproject.toml + poetry
 ## [v0.1.2](https://github.com/feenes/mytb/compare/v0.1.1...v0.1.2)
 * removed dependency from minibelt (now included as mytb.minibelt)
 * isort on more source files
