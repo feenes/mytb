@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "mytb"
-version = "0.2.1"
+version = "0.1.3"
 description = "my toolbox for everyday python projects"
 authors = ["Teledomic <info@teledomic.eu>"]
 license = "MIT"
