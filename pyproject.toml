@@ -24,7 +24,7 @@ pyyaml = {version = "*", optional = true}
 tzlocal = {version = "*", optional = true}
 
 
-
+# TODO: pytest-tempdir is not maintained, pls don't use it and think how to change it
 [tool.poetry.dev-dependencies]
 pytest = "^6.0"
 pytest-tempdir = "^2019.9.16"
