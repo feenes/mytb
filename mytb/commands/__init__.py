@@ -17,10 +17,17 @@ import sys
 import mytb.minibelt as minibelt
 
 # TODO: add autodiscovery
-commands = [(
+commands = [
+    (
         "check_ci_cfg", "mytb.gitlab.check_ci_cfg.main",
         "checks config of a gitlab ci cfg",
-        )]
+    ),
+    (
+        "zcat", "mytb.commands.zcat.main",
+        "concatenate files and uncompresses .gz .bz if necessary"
+    ),
+
+]
 
 cmd_dict = dict((entry[0], entry[1:]) for entry in commands)
 
@@ -52,7 +59,7 @@ def main():
         return
     cmd_name = cmd[0]
     if cmd_name not in cmd_dict:
-        print("ERROR: command %s is unnown:\n" % cmd_name)
+        print("ERROR: command %s is unknown:\n" % cmd_name)
         show_commands(options)
         sys.exit(255)
 
