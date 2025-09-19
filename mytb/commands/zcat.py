@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 def fconcat(fpaths, mode="r"):
     """
-    iterates trhough filenames and yields all of it's lines
+    iterates through filenames and yields all of it's lines
     """
     for path in fpaths:
         path = path if isinstance(path, Path) else Path(path)
